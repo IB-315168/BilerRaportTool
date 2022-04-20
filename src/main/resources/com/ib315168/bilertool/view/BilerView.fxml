@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="401.0" prefWidth="510.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ib315168.bilertool.view.BilerViewController">
+<AnchorPane prefHeight="449.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ib315168.bilertool.view.BilerViewController">
    <children>
       <MenuBar layoutY="1.0" prefHeight="26.0" prefWidth="600.0">
         <menus>
@@ -30,9 +30,9 @@
           </Menu>
         </menus>
       </MenuBar>
-      <SplitPane dividerPositions="0.32608695652173914" layoutY="27.0" prefHeight="373.0" prefWidth="600.0">
+      <SplitPane dividerPositions="0.32608695652173914" layoutY="27.0" prefHeight="423.0" prefWidth="600.0">
         <items>
-            <ListView fx:id="bilerList" prefHeight="372.0" prefWidth="259.0" />
+            <ListView fx:id="bilerList" prefHeight="437.0" prefWidth="192.0" />
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                <children>
                   <Label fx:id="titleLabel" layoutX="23.0" layoutY="14.0" text="Label">
@@ -40,8 +40,8 @@
                         <Font size="22.0" />
                      </font>
                   </Label>
-                  <ListView fx:id="namesList" layoutX="23.0" layoutY="60.0" prefHeight="291.0" prefWidth="178.0" />
-                  <ListView fx:id="valuesList" layoutX="201.0" layoutY="60.0" prefHeight="291.0" prefWidth="178.0" />
+                  <ListView fx:id="namesList" layoutX="23.0" layoutY="60.0" prefHeight="348.0" prefWidth="178.0" />
+                  <ListView fx:id="valuesList" layoutX="201.0" layoutY="60.0" prefHeight="348.0" prefWidth="178.0" />
                </children>
             </AnchorPane>
         </items>

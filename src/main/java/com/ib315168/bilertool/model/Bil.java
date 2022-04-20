@@ -119,11 +119,6 @@ public class Bil
 
   @Override public String toString()
   {
-    return "Bil{" + "numberPlates='" + numberPlates + '\'' + ", make='" + make
-        + '\'' + ", model='" + model + '\'' + ", bodyType='" + bodyType + '\''
-        + ", km=" + km + ", yor=" + yor + ", kmpl=" + kmpl + ", drive='" + drive
-        + '\'' + ", weight=" + weight + ", engineType='" + engineType + '\''
-        + ", volume=" + volume + ", cyl=" + cyl + ", hp=" + hp + ", gearbox="
-        + gearbox + ", hybrid=" + hybrid + '}';
+    return numberPlates + " - " + make + " " + model;
   }
 }
