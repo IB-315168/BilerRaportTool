@@ -6,6 +6,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class BilDao implements Dao<Bil>
@@ -35,9 +36,23 @@ public class BilDao implements Dao<Bil>
         res.getBoolean("hybrid"));
   }
 
-  public List<Bil> getAll()
+  public ArrayList<Bil> getAll() throws SQLException
   {
-    return null;
+    ArrayList<Bil> biler = new ArrayList<>();
+    String query = "SELECT * FROM biler";
+    PreparedStatement selectStatement;
+    selectStatement = connection.prepareStatement(query);
+    ResultSet res = selectStatement.executeQuery();
+    while (res.next()) {
+      biler.add(new Bil(res.getString("number_plates"), res.getString("make"),
+          res.getString("model"), res.getString("bodytype"), res.getInt("km"),
+          res.getDate("yor"), res.getDouble("kmpl"), res.getString("drive"),
+          res.getInt("weight"), res.getString("enginetype"), res.getInt("volume"),
+          res.getInt("cyl"), res.getInt("hp"), res.getBoolean("gearbox"),
+          res.getBoolean("hybrid")));
+    }
+
+    return biler;
   }
 
   public void save(Bil bil) throws SQLException

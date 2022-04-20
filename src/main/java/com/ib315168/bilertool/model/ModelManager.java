@@ -4,8 +4,9 @@ import com.ib315168.bilertool.dao.BilDao;
 import com.ib315168.bilertool.dao.DaoManager;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 
-public class ModelManager
+public class ModelManager implements Model
 {
   private DaoManager daoManager;
   private BilDao bilDao;
@@ -19,6 +20,11 @@ public class ModelManager
     } catch (Exception e) {
       e.printStackTrace();
     }
+  }
+
+  public ArrayList<Bil> getAll() throws SQLException
+  {
+    return bilDao.getAll();
   }
 
   public String getCar(String id) throws SQLException
