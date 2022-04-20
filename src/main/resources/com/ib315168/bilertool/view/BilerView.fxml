@@ -6,13 +6,10 @@
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.SplitPane?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane prefHeight="401.0" prefWidth="510.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ib315168.bilertool.view.BilerViewController">
+<AnchorPane prefHeight="401.0" prefWidth="510.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ib315168.bilertool.view.BilerViewController">
    <children>
       <MenuBar layoutY="1.0" prefHeight="26.0" prefWidth="600.0">
         <menus>
@@ -43,12 +40,8 @@
                         <Font size="22.0" />
                      </font>
                   </Label>
-                  <TableView layoutX="23.0" layoutY="59.0" prefHeight="294.0" prefWidth="274.0">
-                    <columns>
-                      <TableColumn fx:id="namesColumn" editable="false" prefWidth="148.79999160766602" text="Name" />
-                      <TableColumn fx:id="valuesColumn" editable="false" prefWidth="122.40000915527344" text="Value" />
-                    </columns>
-                  </TableView>
+                  <ListView fx:id="namesList" layoutX="23.0" layoutY="60.0" prefHeight="291.0" prefWidth="178.0" />
+                  <ListView fx:id="valuesList" layoutX="201.0" layoutY="60.0" prefHeight="291.0" prefWidth="178.0" />
                </children>
             </AnchorPane>
         </items>

@@ -6,19 +6,20 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TableColumn;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.Region;
+import javafx.util.Pair;
+
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 
 public class BilerViewController
 {
   @FXML private Label titleLabel;
   @FXML private ListView<Bil> bilerList;
-  @FXML private TableColumn<String, String> namesColumn;
-  @FXML private TableColumn<String, String> valuesColumn;
+  @FXML private ListView<String> namesList;
+  @FXML private ListView<String> valuesList;
 
   private ViewHandler viewHandler;
   private BilerViewModel viewModel;
@@ -31,15 +32,24 @@ public class BilerViewController
     this.viewModel = viewModel;
     this.root = root;
 
-    namesColumn.setCellValueFactory(new PropertyValueFactory<>("Name"));
-
-
+    namesList.setItems(FXCollections.observableArrayList("Number plates", "Make",
+        "Model", "Body type", "Mileage", "Registration", "KM/L", "Driven axle",
+        "Curb weight", "Engine type", "Engine volume (cc)", "Cylinders",
+        "Horse power", "Automatic", "Hybrid"));
     bilerList.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Bil>()
     {
       @Override public void changed(ObservableValue<? extends Bil> observable,
           Bil oldValue, Bil newValue)
       {
         titleLabel.setText(newValue.getNumberPlates() + " - " + newValue.getMake() + " " + newValue.getModel());
+        valuesList.setItems(FXCollections.observableArrayList(newValue.getNumberPlates(),
+            newValue.getMake(), newValue.getModel(), newValue.getBodyType(),
+            String.valueOf(newValue.getKm()), newValue.getYor().toString(),
+            String.valueOf(newValue.getKmpl()), newValue.getDrive(),
+            String.valueOf(newValue.getWeight()), newValue.getEngineType(),
+            String.valueOf(newValue.getVolume()), String.valueOf(newValue.getCyl()),
+            String.valueOf(newValue.getHp()), String.valueOf(newValue.isGearbox()),
+            String.valueOf(newValue.isHybrid())));
       }
     });
 
