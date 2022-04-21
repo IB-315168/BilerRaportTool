@@ -12,4 +12,7 @@ public interface Model
   Bil getCurrentBil();
   ArrayList<Bil> getSearched(String keyword);
   void updateCar(Bil bil, String numberPlates) throws SQLException;
+  boolean login(String username, String password) throws SQLException;
+  void setUsername(String username);
+  String getUsername();
 }

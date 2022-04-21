@@ -6,7 +6,7 @@ import java.sql.SQLException;
 
 public class DaoManager
 {
-  public enum Table {biler}
+  public enum Table {biler, users}
   private static ThreadLocal<DaoManager> INSTANCE;
   private Connection connection;
 
@@ -60,6 +60,8 @@ public class DaoManager
     switch (t) {
       case biler:
         return new BilDao(connection);
+      case users:
+        return new UserDao(connection);
       default:
         throw new SQLException("Table does not exist");
     }

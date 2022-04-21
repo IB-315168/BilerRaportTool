@@ -2,10 +2,9 @@ package com.ib315168.bilertool.dao;
 
 import com.ib315168.bilertool.model.Bil;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -55,7 +54,7 @@ public class BilDao implements Dao<Bil>
     return biler;
   }
 
-  public void save(Bil bil) throws SQLException
+  public void save(Bil bil, String username) throws SQLException
   {
     String query = "INSERT INTO biler (number_plates, make, model, bodytype, km, yor, kmpl, drive, weight, enginetype, volume, cyl, hp, gearbox, hybrid) VALUES"
         + "(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
@@ -77,6 +76,16 @@ public class BilDao implements Dao<Bil>
     insertStatement.setBoolean(14, bil.isGearbox());
     insertStatement.setBoolean(15, bil.isHybrid());
     insertStatement.executeUpdate();
+
+    String subquery = "INSERT INTO submissions (user_id, plates, type, timestamp, diff) "
+        + "VALUES ((SELECT id FROM users WHERE username=?), ?, ?, ?, '');";
+    PreparedStatement subinsStatement;
+    subinsStatement = connection.prepareStatement(subquery);
+    subinsStatement.setString(1, username);
+    subinsStatement.setString(2, bil.getNumberPlates());
+    subinsStatement.setString(3, "create");
+    subinsStatement.setTimestamp(4, Timestamp.valueOf(LocalDateTime.now()));
+    subinsStatement.executeUpdate();
   }
 
   public void update(Bil bil, String[] params) throws SQLException
@@ -103,6 +112,17 @@ public class BilDao implements Dao<Bil>
     updateStatement.setBoolean(15, bil.isHybrid());
     updateStatement.setString(16, params[0]);
     updateStatement.executeUpdate();
+
+    String subquery = "INSERT INTO submissions (user_id, plates, type, timestamp, diff) "
+        + "VALUES ((SELECT id FROM users WHERE username=?), ?, ?, ?, ?);";
+    PreparedStatement subinsStatement;
+    subinsStatement = connection.prepareStatement(subquery);
+    subinsStatement.setString(1, params[1]);
+    subinsStatement.setString(2, bil.getNumberPlates());
+    subinsStatement.setString(3, "edit");
+    subinsStatement.setTimestamp(4, Timestamp.valueOf(LocalDateTime.now()));
+    subinsStatement.setString(5, params[2]);
+    subinsStatement.executeUpdate();
   }
 
   public void delete(Bil bil)

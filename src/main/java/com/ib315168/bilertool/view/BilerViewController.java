@@ -5,6 +5,7 @@ import com.ib315168.bilertool.viewmodel.BilerViewModel;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -22,6 +23,7 @@ public class BilerViewController
   @FXML private ListView<Bil> bilerList;
   @FXML private ListView<String> namesList;
   @FXML private ListView<String> valuesList;
+  @FXML private MenuItem aboutButton;
 
   private ViewHandler viewHandler;
   private BilerViewModel viewModel;
@@ -117,5 +119,10 @@ public class BilerViewController
 
   public Region getRoot() {
     return root;
+  }
+
+  @FXML public void aboutView(ActionEvent actionEvent)
+  {
+    viewModel.getAbout(aboutButton.getParentPopup().getOwnerWindow());
   }
 }

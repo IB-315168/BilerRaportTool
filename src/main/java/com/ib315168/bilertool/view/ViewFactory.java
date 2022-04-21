@@ -13,12 +13,14 @@ public class ViewFactory
   private final ViewModelFactory viewModelFactory;
   private BilerViewController bilerViewController;
   private AddViewController addViewController;
+  private LoginViewController loginViewController;
 
   public ViewFactory(ViewHandler viewHandler, ViewModelFactory viewModelFactory) {
     this.viewHandler = viewHandler;
     this.viewModelFactory = viewModelFactory;
     this.bilerViewController = null;
     this.addViewController = null;
+    this.loginViewController = null;
   }
 
   public Region loadBilerView() {
@@ -53,5 +55,22 @@ public class ViewFactory
     }
     addViewController.reset();
     return addViewController.getRoot();
+  }
+
+  public Region loadLoginView() {
+    if (loginViewController == null) {
+      FXMLLoader loader = new FXMLLoader();
+      loader.setLocation(getClass().getResource(
+          "LoginView.fxml"));
+      try {
+        Region root = loader.load();
+        loginViewController = loader.getController();
+        loginViewController.init(viewHandler, viewModelFactory.getLoginViewModel()  , root);
+      } catch (IOException e) {
+        throw new IOError(e);
+      }
+    }
+    loginViewController.reset();
+    return loginViewController.getRoot();
   }
 }

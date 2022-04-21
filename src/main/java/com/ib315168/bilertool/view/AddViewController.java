@@ -50,12 +50,13 @@ public class AddViewController
   }
 
   @FXML public void saveBil() {
+    try {
     Bil bil = new Bil(number_plates.getText(), make.getText(), model.getText(),
         bodyType.getText(), Integer.parseInt(km.getText()), Date.valueOf(yor.getValue()),
         Double.parseDouble(kmpl.getText()), drive.getText(), Integer.parseInt(weight.getText()),
         engineType.getText(), Integer.parseInt(volume.getText()), Integer.parseInt(cyl.getText()),
         Integer.parseInt(hp.getText()), isAutomatic.getValue(), isHybrid.getValue());
-    try {
+
       viewModel.saveBil(bil);
       viewHandler.closeView();
       viewHandler.openView(ViewHandler.BILER);

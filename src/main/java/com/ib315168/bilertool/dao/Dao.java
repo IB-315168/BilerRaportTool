@@ -7,7 +7,7 @@ public interface Dao<T>
 {
   T get(String id) throws SQLException;
   List<T> getAll() throws SQLException;
-  void save(T t) throws SQLException;
+  void save(T t, String username) throws SQLException;
   void update(T t, String[] params) throws SQLException;
   void delete(T t);
 }
