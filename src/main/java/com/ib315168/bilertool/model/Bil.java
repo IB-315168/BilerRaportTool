@@ -1,6 +1,8 @@
 package com.ib315168.bilertool.model;
 
 import java.sql.Date;
+import java.util.ArrayList;
+import java.util.Arrays;
 
 public class Bil
 {
@@ -119,6 +121,13 @@ public class Bil
 
   @Override public String toString()
   {
-    return numberPlates + " - " + make + " " + model;
+    return numberPlates + " - " + yor.toLocalDate().getYear() + " " + make + " " + model;
+  }
+
+  public ArrayList<String> getAllValues() {
+    return new ArrayList<String>(Arrays.asList(numberPlates,
+        make, model, bodyType, String.valueOf(km), yor.toLocalDate().toString(),
+        String.valueOf(kmpl), drive, String.valueOf(weight), engineType, String.valueOf(volume),
+        String.valueOf(cyl), String.valueOf(hp), String.valueOf(gearbox), String.valueOf(hybrid)));
   }
 }

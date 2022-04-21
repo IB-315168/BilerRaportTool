@@ -10,6 +10,8 @@ import javafx.stage.WindowEvent;
 public class ViewHandler
 {
   public static final String BILER = "biler";
+  public static final String ADD = "add";
+  public static final String EDIT = "edit";
 
   private final Scene currentScene;
   private Stage primaryStage;
@@ -28,6 +30,7 @@ public class ViewHandler
   public void openView(String id) {
     Region root = switch(id) {
       case BILER -> viewFactory.loadBilerView();
+      case ADD -> viewFactory.loadAddView();
       default -> throw new IllegalArgumentException("Unknown view: " + id);
     };
     currentScene.setRoot(root);

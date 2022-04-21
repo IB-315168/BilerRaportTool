@@ -1,0 +1,18 @@
+<component name="ArtifactManager">
+  <artifact type="jlink" name="JRE">
+    <output-path>$PROJECT_DIR$/out/artifacts/JRE</output-path>
+    <root id="root">
+      <element id="module-output" name="BilerRaportTool" />
+      <element id="library" level="project" name="Maven: org.checkerframework:checker-qual:3.5.0" />
+      <element id="library" level="project" name="Maven: org.openjfx:javafx-base:17.0.2" />
+      <element id="library" level="project" name="Maven: org.openjfx:javafx-base:win:17.0.2" />
+      <element id="library" level="project" name="Maven: org.openjfx:javafx-controls:17.0.2" />
+      <element id="library" level="project" name="Maven: org.openjfx:javafx-controls:win:17.0.2" />
+      <element id="library" level="project" name="Maven: org.openjfx:javafx-fxml:win:17.0.2" />
+      <element id="library" level="project" name="Maven: org.openjfx:javafx-graphics:17.0.2" />
+      <element id="library" level="project" name="Maven: org.openjfx:javafx-fxml:17.0.2" />
+      <element id="library" level="project" name="Maven: org.openjfx:javafx-graphics:win:17.0.2" />
+      <element id="library" level="project" name="Maven: org.postgresql:postgresql:42.3.3" />
+    </root>
+  </artifact>
+</component>

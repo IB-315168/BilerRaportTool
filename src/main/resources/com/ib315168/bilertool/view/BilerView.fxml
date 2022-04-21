@@ -1,26 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane prefHeight="449.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ib315168.bilertool.view.BilerViewController">
    <children>
       <MenuBar layoutY="1.0" prefHeight="26.0" prefWidth="600.0">
         <menus>
-          <Menu mnemonicParsing="false" text="File">
-            <items>
-              <MenuItem mnemonicParsing="false" text="Close" />
-            </items>
-          </Menu>
           <Menu mnemonicParsing="false" text="Edit">
             <items>
-              <MenuItem mnemonicParsing="false" text="Delete" />
+              <MenuItem mnemonicParsing="false" onAction="#saveView" text="Add" />
+                  <MenuItem mnemonicParsing="false" onAction="#editView" text="Edit" />
             </items>
           </Menu>
           <Menu mnemonicParsing="false" text="Help">
@@ -32,7 +32,21 @@
       </MenuBar>
       <SplitPane dividerPositions="0.32608695652173914" layoutY="27.0" prefHeight="423.0" prefWidth="600.0">
         <items>
-            <ListView fx:id="bilerList" prefHeight="437.0" prefWidth="192.0" />
+            <VBox prefHeight="200.0" prefWidth="100.0">
+               <children>
+                  <HBox prefHeight="26.0" prefWidth="192.0">
+                     <children>
+                        <TextField fx:id="searchBar" onKeyPressed="#keyPressed" />
+                        <Button mnemonicParsing="false" onAction="#searchCar" prefHeight="28.0" prefWidth="44.0" text="Search">
+                           <font>
+                              <Font size="10.0" />
+                           </font>
+                        </Button>
+                     </children>
+                  </HBox>
+                  <ListView fx:id="bilerList" prefHeight="437.0" prefWidth="192.0" />
+               </children>
+            </VBox>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                <children>
                   <Label fx:id="titleLabel" layoutX="23.0" layoutY="14.0" text="Label">

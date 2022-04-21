@@ -8,4 +8,8 @@ public interface Model
   String getCar(String id) throws SQLException;
   void addCar(Bil bil) throws SQLException;
   ArrayList<Bil> getAll() throws SQLException;
+  void setCurrentBil(Bil bil);
+  Bil getCurrentBil();
+  ArrayList<Bil> getSearched(String keyword);
+  void updateCar(Bil bil, String numberPlates) throws SQLException;
 }

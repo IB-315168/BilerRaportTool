@@ -39,7 +39,7 @@ public class BilDao implements Dao<Bil>
   public ArrayList<Bil> getAll() throws SQLException
   {
     ArrayList<Bil> biler = new ArrayList<>();
-    String query = "SELECT * FROM biler";
+    String query = "SELECT * FROM biler;";
     PreparedStatement selectStatement;
     selectStatement = connection.prepareStatement(query);
     ResultSet res = selectStatement.executeQuery();
@@ -58,7 +58,7 @@ public class BilDao implements Dao<Bil>
   public void save(Bil bil) throws SQLException
   {
     String query = "INSERT INTO biler (number_plates, make, model, bodytype, km, yor, kmpl, drive, weight, enginetype, volume, cyl, hp, gearbox, hybrid) VALUES"
-        + "(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        + "(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
     PreparedStatement insertStatement;
     insertStatement = connection.prepareStatement(query);
     insertStatement.setString(1, bil.getNumberPlates());
@@ -79,9 +79,30 @@ public class BilDao implements Dao<Bil>
     insertStatement.executeUpdate();
   }
 
-  public void update(Bil bil, String[] params)
+  public void update(Bil bil, String[] params) throws SQLException
   {
-
+    String query = "UPDATE biler SET number_plates=?, make=?, model=?, bodytype=?, km=?, yor=?,"
+        + "kmpl=?, drive=?, weight=?, enginetype=?, volume=?, cyl=?, hp=?, gearbox=?, hybrid=?"
+        + " WHERE number_plates=?;";
+    PreparedStatement updateStatement;
+    updateStatement = connection.prepareStatement(query);
+    updateStatement.setString(1, bil.getNumberPlates());
+    updateStatement.setString(2, bil.getMake());
+    updateStatement.setString(3, bil.getModel());
+    updateStatement.setString(4, bil.getBodyType());
+    updateStatement.setInt(5, bil.getKm());
+    updateStatement.setDate(6, bil.getYor());
+    updateStatement.setDouble(7, bil.getKmpl());
+    updateStatement.setString(8, bil.getDrive());
+    updateStatement.setInt(9, bil.getWeight());
+    updateStatement.setString(10, bil.getEngineType());
+    updateStatement.setInt(11, bil.getVolume());
+    updateStatement.setInt(12, bil.getCyl());
+    updateStatement.setInt(13, bil.getHp());
+    updateStatement.setBoolean(14, bil.isGearbox());
+    updateStatement.setBoolean(15, bil.isHybrid());
+    updateStatement.setString(16, params[0]);
+    updateStatement.executeUpdate();
   }
 
   public void delete(Bil bil)

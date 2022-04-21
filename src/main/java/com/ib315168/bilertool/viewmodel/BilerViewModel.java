@@ -19,4 +19,13 @@ public class BilerViewModel
   {
     return model.getAll();
   }
+
+  public void setCurrent(Bil bil) {
+    model.setCurrentBil(bil);
+  }
+
+  public ArrayList<Bil> getSearched(String keyword)
+  {
+    return model.getSearched(keyword);
+  }
 }
